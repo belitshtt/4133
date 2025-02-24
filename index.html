@@ -302,17 +302,30 @@
             return vowels.includes(letter);
         }
 
-        function sumDigitsDetailed(number) {
-            let breakdown = [];
-            while (number > 9 && number !== 11 && number !== 22 && number !== 33) {
-                breakdown.push(number);
-                number = number.toString().split("").reduce((acc, num) => acc + parseInt(num), 0);
+        // function sumDigitsDetailed(number) {
+        //     let breakdown = [];
+        //     while (number > 9 ) {
+        //         breakdown.push(number);
+        //         number = number.toString().split("").reduce((acc, num) => acc + parseInt(num), 0);
+        //     }
+        //     breakdown.push(number);
+        //     return breakdown.length > 1 ? breakdown.join("/") : number;
+        // }
+                function sumDigitsDetailed(number) {
+            let currentNumber = number;
+            
+            // Lặp cho đến khi số cuối cùng < 10
+            while (currentNumber > 9) {
+                // Tính tổng các chữ số
+                currentNumber = currentNumber.toString()
+                    .split("")
+                    .reduce((acc, num) => acc + parseInt(num), 0);
             }
-            breakdown.push(number);
-            return breakdown.length > 1 ? breakdown.join("/") : number;
+            
+            // Chỉ trả về số cuối cùng
+            return currentNumber;
         }
-
-        function getFilteredName(name) {
+                function getFilteredName(name) {
             const originalName = name.trim();
             const normalizedName = removeDiacritics(name).toUpperCase();
             let nameParts = normalizedName.replace(/[^A-Z\s]/g, "").trim().split(/\s+/);
