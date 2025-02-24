@@ -156,6 +156,16 @@
         .result-section .card {
             width: 48%;
         }
+        #dynamicFrame {
+    width: 100%;  /* Chiếm toàn bộ chiều rộng */
+    height: 1000px; /* Độ cao cố định, có thể thay đổi */
+    border: none; /* Ẩn viền */
+    display: block; /* Hiển thị dạng block để tách biệt nội dung */
+    margin-top: 20px; /* Tạo khoảng cách với nội dung trên */
+}
+
+
+
 
         @media (max-width: 768px) {
             .container {
@@ -248,6 +258,9 @@
             </div>
         </div>
     </div>
+    <!-- Iframe tự scale theo kích thước web -->
+<iframe id="dynamicFrame" src="https://tshbeli.com.vn"></iframe>
+
 </body>
 
 
@@ -456,6 +469,7 @@ document.getElementById("inputString").addEventListener("input", function() {
     calculateName(inputValue);
     calculatePersonality(inputValue);
 });
+
 
 
     </script>
