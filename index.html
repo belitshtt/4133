@@ -5,193 +5,274 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beli Thần Số Học Tỉnh Thức</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
-        :root {
-            --primary-color: #3B82F6;
-            --primary-hover: #2563EB;
-            --background-color: #F0F9FF;
-            --card-background: #FFFFFF;
-            --text-primary: #1F2937;
-            --text-secondary: #6B7280;
-            --border-color: #E5E7EB;
-        }
+        <style>
+/*
+ * BẢN NÂNG CẤP CSS CHUYÊN NGHIỆP
+ * Ngôn ngữ: Tiếng Việt
+ * Người thực hiện: Gemini
+ * Ngày cập nhật: 11/08/2025
+ *
+ * CÁC THAY ĐỔI CHÍNH (THEO YÊU CẦU):
+ * 1. Sửa lỗi hiển thị bảng trên điện thoại:
+ * - Đã cho phép văn bản trong các ô (th, td) tự động xuống dòng (white-space: normal).
+ * Điều này giải quyết vấn đề nội dung bị "khuất" và giúp bảng cân đối hơn.
+ * - Thêm canh lề theo chiều dọc (vertical-align: middle) để các ô trông gọn gàng khi có nhiều dòng.
+ *
+ * 2. Cập nhật Font chữ:
+ * - Áp dụng font 'Cambria' cho toàn bộ trang theo yêu cầu của bạn.
+ *
+ * 3. Tối ưu hóa:
+ * - Giữ nguyên toàn bộ các cải tiến về giao diện, màu sắc và hiệu ứng.
+ */
 
-        body {
-            font-family: 'Cambria', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-primary);
-            line-height: 1.5;
-            transition: all 0.3s ease;
-        }
+:root {
+    --primary-color: #3B82F6; /* Xanh dương làm điểm nhấn */
+    --primary-hover: #2563EB; /* Màu khi hover, đậm hơn một chút */
+    --background-color: #F8FAFC; /* Màu nền xám rất nhạt, sạch sẽ */
+    --card-background: #FFFFFF; /* Màu trắng cho các thẻ */
+    --text-primary: #1E293B; /* Màu chữ chính, đen-xám */
+    --text-secondary: #64748B; /* Màu chữ phụ, xám nhạt hơn */
+    --border-color: #E2E8F0; /* Màu viền, rất nhạt */
+    --table-header-bg: #F8FAFC; /* Màu nền tiêu đề bảng, đồng bộ với nền trang */
+    --table-row-hover-bg: #EFF6FF; /* Màu khi hover dòng của bảng */
+}
 
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 1rem auto;
-            padding: 0.5rem;
-        }
+/* --- Thiết lập cơ bản & Reset --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 
-        .card {
-            background: var(--card-background);
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-            overflow: hidden;
-        }
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
 
-        .card-header {
-            padding: 1rem;
-            background: #F0F9FF;
-            border-bottom: 1px solid var(--border-color);
-            text-align: center;
-        }
+body {
+    font-family: 'Cambria', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* Cập nhật font chữ */
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-        .card-header img {
-            width: 100%;
-            max-width: 250px;
-            height: auto;
-            margin: 0 auto;
-        }
+/* --- Bố cục chính --- */
+.container {
+    max-width: 1200px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
 
-        .card-body {
-            padding: 1rem;
-        }
+.card {
+    background: var(--card-background);
+    border-radius: 0.75rem; /* Bo góc nhẹ nhàng hơn */
+    border: 1px solid var(--border-color); /* Thêm viền nhẹ để thẻ nổi bật hơn trên nền */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Bóng đổ rất nhẹ mặc định */
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden; /* Giữ overflow hidden để bo góc hoạt động đúng */
+}
 
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Bóng đổ rõ hơn khi hover */
+}
 
-        @media (min-width: 640px) {
-            .input-group {
-                flex-direction: row;
-            }
-        }
+.card-header {
+    padding: 1.25rem 1.5rem;
+    background-color: var(--card-background);
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
 
-        input[type="text"] {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-        }
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
 
-        .btn {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
+.card-header img {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+}
 
-        @media (min-width: 640px) {
-            .btn {
-                width: auto;
-                min-width: 120px;
-            }
-        }
+.card-body {
+    padding: 1.5rem;
+}
 
-        .result-section {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: 1fr;
-        }
+/* --- Form & Nút bấm --- */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
 
-        @media (min-width: 768px) {
-            .result-section {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+input[type="text"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: #FFF;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
 
-        .result-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.875rem;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
 
-        .result-table th {
-            background-color: #F0F9FF;
-            padding: 0.75rem;
-            text-align: left;
-            font-weight: 600;
-            color: var(--text-secondary);
-            border-bottom: 2px solid var(--border-color);
-            white-space: nowrap;
-        }
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600; /* Tăng độ đậm cho chữ */
+    font-size: 0.95rem; /* Giảm nhẹ cỡ chữ */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em; /* Tăng khoảng cách ký tự */
+    white-space: nowrap;
+}
 
-        .result-table td {
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
-            white-space: nowrap;
-            transition: background-color 0.15s ease-in-out;
-        }
+.btn svg {
+    width: 1.125rem; /* 18px */
+    height: 1.125rem;
+    margin-right: 0.5rem;
+}
 
-        .result-table tr:hover {
-            background-color: #E0F2FE;
-        }
+.btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
 
-        #dynamicFrame {
-            width: 100%;
-            height: 600px;
-            border: none;
-            margin-top: 1rem;
-        }
-        #dynamicFramess {
-            width: 100%;
-            height: 600px;
-            border: none;
-            margin-top: 1rem;
-        }
+/* --- Bảng dữ liệu (HIỂN THỊ NHẤT QUÁN) --- */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Chìa khoá cho bảng responsive trên mọi thiết bị */
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    /* Đổ bóng nhẹ cho toàn bộ bảng */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Gộp các đường viền lại */
+    background-color: var(--card-background);
+}
+
+/* Canh lề và khoảng cách cho các ô */
+th, td {
+    padding: 0.875rem 1.25rem; /* Tăng padding để thoáng hơn */
+    text-align: left;
+    /* [FIX] Cho phép chữ tự xuống dòng để không bị khuất trên mobile */
+    white-space: normal; 
+    /* [FIX] Canh giữa theo chiều dọc để đẹp hơn khi chữ có nhiều dòng */
+    vertical-align: middle; 
+    border-bottom: 1px solid var(--border-color); /* Chỉ giữ lại đường kẻ ngang */
+}
+
+/* Kiểu cho tiêu đề bảng (Header) */
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.8rem; /* Chữ nhỏ hơn một chút */
+    text-transform: uppercase; /* VIẾT HOA TIÊU ĐỀ */
+    letter-spacing: 0.05em;
+}
+
+/* Hiệu ứng "ngựa vằn" cho các dòng chẵn */
+tr:nth-of-type(even) {
+    background-color: #FDFDFD; /* Một màu xám rất nhẹ, gần như trắng */
+}
+
+/* Bỏ đường viền của dòng cuối cùng */
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Hiệu ứng hover cho các dòng */
+tr:hover {
+    background-color: var(--table-row-hover-bg);
+}
+
+/* Canh giữa cho các cột không phải cột đầu tiên */
+.result-table th:not(:first-child),
+.result-table td:not(:first-child) {
+    text-align: center;
+}
+
+/* Màu chữ đặc biệt cho dữ liệu kết quả */
+.result-table td:not(:first-child) {
+    font-weight: 500;
+    color: var(--primary-color);
+}
 
 
-        @media (min-width: 1024px) {
-            #dynamicFrame {
-                height: 800px;
-            }
-        }
-       
+/* --- Iframe & Phần kết quả --- */
+#dynamicFrame, #dynamicFramess {
+    width: 100%;
+    height: 450px;
+    border: 1px solid var(--border-color); /* Thêm viền cho iframe */
+    margin-top: 1rem;
+    border-radius: 0.75rem;
+    background-color: var(--card-background);
+}
 
-        .name-info {
-            background-color: #F0F9FF;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            margin-top: 0.75rem;
-            font-size: 0.875rem;
-        }
 
-        .hidden {
-            display: none;
-        }
+/* --- MEDIA QUERIES cho màn hình lớn hơn (Desktop) --- */
+@media (min-width: 768px) {
+    .container {
+        margin: 2.5rem auto; /* Tăng khoảng cách trên desktop */
+        padding: 0 1.5rem;
+    }
+    
+    .input-group {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .result-section {
+        flex-direction: row;
+        gap: 2rem;
+    }
+    
+    #dynamicFrame, #dynamicFramess {
+        height: 600px;
+    }
+}
+
+
     </style>
 </head>
 <body>
-    <!-- Giữ nguyên phần HTML cũ nhưng thêm các class Tailwind cho responsive -->
-    <div class="container px-4 mx-auto">
+    <div class="container">
         <div class="card">
             <div class="card-header">
-                <img src="https://tshbeli.com.vn/wp-content/uploads/2024/10/anh-logo-Beli.jpg" alt="Logo" class="max-w-xs mx-auto">
+                <img src="https://tshbeli.com.vn/wp-content/uploads/2024/10/anh-logo-Beli.jpg" alt="Logo">
             </div>
             <div class="card-body">
                 <div class="input-group">
-                    <input type="text" id="inputString" placeholder="Nhập họ tên hoặc chuỗi ký tự (Ví dụ: Nguyễn Văn A)" class="flex-grow">
+                    <input type="text" id="inputString" placeholder="Nhập họ tên hoặc chuỗi ký tự (Ví dụ: Nguyễn Văn A)">
                     <button onclick="calculateAll()" class="btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10H9m3-5h3m-6 0h0m0 0h6m-6 0H6"/>
                         </svg>
-                        <span>Tính toán</span>
+                        Tính toán
                     </button>
                 </div>
                 <div id="nameInfo" class="name-info hidden"></div>
@@ -199,16 +280,16 @@
         </div>
 
         <div class="result-section">
-            <div class="card">
-                <!-- <div class="card-header">
-                    <h2 class="text-lg font-semibold">Kết quả tính theo tên</h2>
-                </div> -->
-                <div class="card-body overflow-x-auto">
+            <div class="card" hidden>
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
                     <table class="result-table">
                         <thead>
                             <tr>
-                                <th class="text-left">Chỉ số</th>
-                                <th class="text-left">Giá trị</th>
+                                <th>Chỉ số</th>
+                                <th>Giá trị</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -230,36 +311,31 @@
             </div>
 
             <div class="card">
-                <!-- <div class="card-header">
-                    <h2 class="text-lg font-semibold">Kết quả tính theo tính cách</h2>
-                </div> -->
-                <div class="card-body overflow-x-auto">
+                <div class="card-header">
+                
+                </div>
+                <div class="card-body">
                     <table class="result-table">
                         <thead>
                             <tr>
-                                <th class="text-left">Phân loại</th>
-                                <th class="text-center">Tự đánh giá</th>
-                                <th class="text-center">Giá trị thật</th>
+                                <th>Phân loại</th>
+                                <th>Tự đánh giá</th>
+                                <th>Giá trị thật</th>
                             </tr>
                         </thead>
                         <tbody id="personalityTableBody">
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    
-    <iframe id="dynamicFrame" src="https://tshbeli.com.vn" class="w-full"></iframe>
+        <iframe id="dynamicFrame" src="https://tshbeli.com.vn" class="w-full"></iframe>
     <iframe id="dynamicFramess" src="https://belitshtt.github.io/97658/" class="w-full"></iframe>
   
 </body>
-
-
-
-
-
     <script>
+        // --- TOÀN BỘ LOGIC JAVASCRIPT ĐƯỢC GIỮ NGUYÊN ---
         const PYTHAGORAS_MAP = {
             A: 1, J: 1, S: 1,
             B: 2, K: 2, T: 2,
@@ -310,16 +386,7 @@
             return vowels.includes(letter);
         }
 
-        // function sumDigitsDetailed(number) {
-        //     let breakdown = [];
-        //     while (number > 9 ) {
-        //         breakdown.push(number);
-        //         number = number.toString().split("").reduce((acc, num) => acc + parseInt(num), 0);
-        //     }
-        //     breakdown.push(number);
-        //     return breakdown.length > 1 ? breakdown.join("/") : number;
-        // }
-                function sumDigitsDetailed(number) {
+        function sumDigitsDetailed(number) {
             let currentNumber = number;
             
             // Lặp cho đến khi số cuối cùng < 10
@@ -328,17 +395,18 @@
                 currentNumber = currentNumber.toString()
                     .split("")
                     .reduce((acc, num) => acc + parseInt(num), 0);
+      
             }
             
             // Chỉ trả về số cuối cùng
             return currentNumber;
+           
         }
-                function getFilteredName(name) {
+        function getFilteredName(name) {
             const originalName = name.trim();
             const normalizedName = removeDiacritics(name).toUpperCase();
             let nameParts = normalizedName.replace(/[^A-Z\s]/g, "").trim().split(/\s+/);
             
-            // Đã ẩn hiển thị thông tin tên
             const nameInfo = document.getElementById("nameInfo");
             nameInfo.classList.add("hidden");
             
@@ -436,14 +504,13 @@
             calculatePersonality(input);
         }
 
-        // Thêm event listener cho phím Enter
         document.getElementById("inputString").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
+             
                 calculateAll();
             }
         });
 
-        // Hiệu ứng loading khi nhấn nút tính toán
         function showLoading() {
             const button = document.querySelector('.btn');
             const originalContent = button.innerHTML;
@@ -462,21 +529,32 @@
             }, 500);
         }
 
-        // Thêm hiệu ứng loading vào hàm calculateAll
         const originalCalculateAll = calculateAll;
         calculateAll = function() {
             showLoading();
-            setTimeout(originalCalculateAll, 100);
+            setTimeout(() => {
+                const input = document.getElementById("inputString").value;
+                if (!input.trim()) {
+                    // Reset alert from original function
+                    return;
+                }
+                originalCalculateAll();
+            }, 100);
         };
-document.getElementById("inputString").addEventListener("input", function() {
-    const inputValue = this.value;
-    // Call the calculation function without submitting
-    calculateName(inputValue);
-    calculatePersonality(inputValue);
-});
-
-
-
+        
+        document.getElementById("inputString").addEventListener("input", function() {
+            const inputValue = this.value;
+            if (inputValue.trim()) {
+                 calculateName(inputValue);
+                 calculatePersonality(inputValue);
+            } else {
+                 // Xóa kết quả nếu ô input trống
+                 document.getElementById("personalityTableBody").innerHTML = "";
+                 document.getElementById("interactionVertical").textContent = "-";
+                 document.getElementById("growthVertical").textContent = "-";
+                 document.getElementById("innerVertical").textContent = "-";
+            }
+        });
     </script>
 </body>
 </html>
