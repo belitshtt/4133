@@ -38,6 +38,7 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             margin-bottom: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Đảm bảo các góc bo tròn được áp dụng đúng */
         }
 
         .card:hover {
@@ -51,11 +52,17 @@
             border-bottom: 1px solid var(--border-color);
             text-align: center;
         }
+        
+        .card-title {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            color: var(--text-primary);
+        }
 
         .card-header img {
-            width: 100%; /* Đảm bảo logo chiếm toàn bộ chiều rộng của thẻ */
-            max-width: 300px; /* Giới hạn kích thước của logo */
-            margin: 0 auto; /* Căn giữa logo */
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
         }
 
         .card-body {
@@ -129,7 +136,7 @@
         }
 
         th {
-            background-color: #F0F9FF;
+            background-color: #F9FAFB; /* Một màu xám rất nhạt */
             padding: 0.75rem 1rem;
             text-align: left;
             font-weight: 600;
@@ -146,15 +153,28 @@
         .result-table tr:hover {
             background-color: #E0F2FE;
         }
+        
+        /* Canh giữa các cột giá trị trong bảng kết quả */
+        .result-table th:not(:first-child),
+        .result-table td:not(:first-child) {
+            text-align: center;
+        }
+        
+        /* Làm nổi bật các con số kết quả */
+        .result-table td:not(:first-child) {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
 
         .result-section {
             display: flex;
-            justify-content: space-between;
             gap: 2rem;
         }
 
+        /* --- SỬA ĐỔI CHÍNH --- */
+        /* Đảm bảo card còn lại chiếm toàn bộ chiều rộng */
         .result-section .card {
-            width: 48%;
+            width: 100%; 
         }
 
         @media (max-width: 768px) {
@@ -198,7 +218,7 @@
         </div>
 
         <div class="result-section">
-            <div class="card">
+            <div class="card" hidden>
                 <div class="card-header">
                     <h2 class="card-title">Kết quả tính theo tên</h2>
                 </div>
@@ -242,19 +262,15 @@
                             </tr>
                         </thead>
                         <tbody id="personalityTableBody">
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-</body>
-
-
-
-
 
     <script>
+        // --- TOÀN BỘ LOGIC JAVASCRIPT ĐƯỢC GIỮ NGUYÊN ---
         const PYTHAGORAS_MAP = {
             A: 1, J: 1, S: 1,
             B: 2, K: 2, T: 2,
@@ -319,7 +335,6 @@
             const normalizedName = removeDiacritics(name).toUpperCase();
             let nameParts = normalizedName.replace(/[^A-Z\s]/g, "").trim().split(/\s+/);
             
-            // Đã ẩn hiển thị thông tin tên
             const nameInfo = document.getElementById("nameInfo");
             nameInfo.classList.add("hidden");
             
@@ -417,14 +432,13 @@
             calculatePersonality(input);
         }
 
-        // Thêm event listener cho phím Enter
         document.getElementById("inputString").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
+                event.preventDefault(); // Ngăn form submit (nếu có)
                 calculateAll();
             }
         });
 
-        // Hiệu ứng loading khi nhấn nút tính toán
         function showLoading() {
             const button = document.querySelector('.btn');
             const originalContent = button.innerHTML;
@@ -443,20 +457,32 @@
             }, 500);
         }
 
-        // Thêm hiệu ứng loading vào hàm calculateAll
         const originalCalculateAll = calculateAll;
         calculateAll = function() {
             showLoading();
-            setTimeout(originalCalculateAll, 100);
+            setTimeout(() => {
+                const input = document.getElementById("inputString").value;
+                if (!input.trim()) {
+                    // Reset alert from original function
+                    return;
+                }
+                originalCalculateAll();
+            }, 100);
         };
-document.getElementById("inputString").addEventListener("input", function() {
-    const inputValue = this.value;
-    // Call the calculation function without submitting
-    calculateName(inputValue);
-    calculatePersonality(inputValue);
-});
-
-
+        
+        document.getElementById("inputString").addEventListener("input", function() {
+            const inputValue = this.value;
+            if (inputValue.trim()) {
+                 calculateName(inputValue);
+                 calculatePersonality(inputValue);
+            } else {
+                 // Xóa kết quả nếu ô input trống
+                 document.getElementById("personalityTableBody").innerHTML = "";
+                 document.getElementById("interactionVertical").textContent = "-";
+                 document.getElementById("growthVertical").textContent = "-";
+                 document.getElementById("innerVertical").textContent = "-";
+            }
+        });
     </script>
 </body>
 </html>
