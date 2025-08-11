@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Máy Tính Chỉ Số Pythagoras</title>
+    <title>Beli Thần Số Học Tỉnh Thức</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
         :root {
-            --primary-color: #3B82F6; /* Màu xanh sáng */
-            --primary-hover: #2563EB; /* Màu xanh đậm hơn khi hover */
-            --background-color: #F0F9FF; /* Màu nền sáng */
-            --card-background: #FFFFFF; /* Màu nền cho card */
-            --text-primary: #1F2937; /* Màu chữ chính */
-            --text-secondary: #6B7280; /* Màu chữ phụ */
-            --border-color: #E5E7EB; /* Màu đường viền */
+            --primary-color: #3B82F6;
+            --primary-hover: #2563EB;
+            --background-color: #F0F9FF;
+            --card-background: #FFFFFF;
+            --text-primary: #1F2937;
+            --text-secondary: #6B7280;
+            --border-color: #E5E7EB;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Cambria', sans-serif;
             background-color: var(--background-color);
             color: var(--text-primary);
             line-height: 1.5;
@@ -27,190 +27,171 @@
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: 1rem auto;
+            padding: 0.5rem;
         }
 
         .card {
             background: var(--card-background);
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden; /* Đảm bảo các góc bo tròn được áp dụng đúng */
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+            overflow: hidden;
         }
 
         .card-header {
-            padding: 1.5rem;
+            padding: 1rem;
             background: #F0F9FF;
             border-bottom: 1px solid var(--border-color);
             text-align: center;
         }
-        
-        .card-title {
-            font-size: 1.25rem; /* 20px */
-            font-weight: 600;
-            color: var(--text-primary);
-        }
 
         .card-header img {
             width: 100%;
-            max-width: 300px;
+            max-width: 250px;
+            height: auto;
             margin: 0 auto;
         }
 
         .card-body {
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
         .input-group {
             display: flex;
-            gap: 1rem;
+            flex-direction: column;
+            gap: 0.75rem;
             margin-bottom: 1rem;
         }
 
-        input[type="text"] {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: all 0.15s ease-in-out;
+        @media (min-width: 640px) {
+            .input-group {
+                flex-direction: row;
+            }
         }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.75rem 1.5rem;
+            width: 100%;
+            padding: 0.75rem;
             background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 0.5rem;
             font-weight: 500;
-            cursor: pointer;
-            transition: all 0.15s ease-in-out;
-            text-transform: uppercase;
-            letter-spacing: 0.025em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        .btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
+        @media (min-width: 640px) {
+            .btn {
+                width: auto;
+                min-width: 120px;
+            }
         }
 
-        .btn:active {
-            transform: translateY(0);
+        .result-section {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr;
         }
 
-        .btn svg {
-            width: 1.25rem;
-            height: 1.25rem;
-            margin-right: 0.5rem;
+        @media (min-width: 768px) {
+            .result-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        .name-info {
-            background-color: #F0F9FF;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            font-size: 1rem;
-            color: var(--primary-color);
-        }
-
-        table {
+        .result-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
-        th {
-            background-color: #F9FAFB; /* Một màu xám rất nhạt */
-            padding: 0.75rem 1rem;
+        .result-table th {
+            background-color: #F0F9FF;
+            padding: 0.75rem;
             text-align: left;
             font-weight: 600;
             color: var(--text-secondary);
             border-bottom: 2px solid var(--border-color);
+            white-space: nowrap;
         }
 
-        td {
-            padding: 0.75rem 1rem;
+        .result-table td {
+            padding: 0.75rem;
             border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
             transition: background-color 0.15s ease-in-out;
         }
 
         .result-table tr:hover {
             background-color: #E0F2FE;
         }
-        
-        /* Canh giữa các cột giá trị trong bảng kết quả */
-        .result-table th:not(:first-child),
-        .result-table td:not(:first-child) {
-            text-align: center;
-        }
-        
-        /* Làm nổi bật các con số kết quả */
-        .result-table td:not(:first-child) {
-            font-weight: 500;
-            color: var(--primary-color);
-        }
 
-        .result-section {
-            display: flex;
-            gap: 2rem;
+        #dynamicFrame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            margin-top: 1rem;
+        }
+        #dynamicFramess {
+            width: 100%;
+            height: 600px;
+            border: none;
+            margin-top: 1rem;
         }
 
-        /* --- SỬA ĐỔI CHÍNH --- */
-        /* Đảm bảo card còn lại chiếm toàn bộ chiều rộng */
-        .result-section .card {
-            width: 100%; 
+
+        @media (min-width: 1024px) {
+            #dynamicFrame {
+                height: 800px;
+            }
+        }
+       
+
+        .name-info {
+            background-color: #F0F9FF;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .card {
-                width: 100%;
-            }
-
-            .result-section {
-                flex-direction: column;
-            }
-
-            .result-section .card {
-                width: 100%;
-            }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Giữ nguyên phần HTML cũ nhưng thêm các class Tailwind cho responsive -->
+    <div class="container px-4 mx-auto">
         <div class="card">
             <div class="card-header">
-                <img src="https://tshbeli.com.vn/wp-content/uploads/2024/10/anh-logo-Beli.jpg" alt="Logo">
+                <img src="https://tshbeli.com.vn/wp-content/uploads/2024/10/anh-logo-Beli.jpg" alt="Logo" class="max-w-xs mx-auto">
             </div>
             <div class="card-body">
                 <div class="input-group">
-                    <input type="text" id="inputString" placeholder="Nhập họ tên hoặc chuỗi ký tự (Ví dụ: Nguyễn Văn A)">
+                    <input type="text" id="inputString" placeholder="Nhập họ tên hoặc chuỗi ký tự (Ví dụ: Nguyễn Văn A)" class="flex-grow">
                     <button onclick="calculateAll()" class="btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10H9m3-5h3m-6 0h0m0 0h6m-6 0H6"/>
                         </svg>
-                        Tính toán
+                        <span>Tính toán</span>
                     </button>
                 </div>
                 <div id="nameInfo" class="name-info hidden"></div>
@@ -218,16 +199,16 @@
         </div>
 
         <div class="result-section">
-            <div class="card" hidden>
-                <div class="card-header">
-                    <h2 class="card-title">Kết quả tính theo tên</h2>
-                </div>
-                <div class="card-body">
+            <div class="card">
+                <!-- <div class="card-header">
+                    <h2 class="text-lg font-semibold">Kết quả tính theo tên</h2>
+                </div> -->
+                <div class="card-body overflow-x-auto">
                     <table class="result-table">
                         <thead>
                             <tr>
-                                <th>Chỉ số</th>
-                                <th>Giá trị</th>
+                                <th class="text-left">Chỉ số</th>
+                                <th class="text-left">Giá trị</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -249,28 +230,36 @@
             </div>
 
             <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Kết quả tính theo tính cách</h2>
-                </div>
-                <div class="card-body">
+                <!-- <div class="card-header">
+                    <h2 class="text-lg font-semibold">Kết quả tính theo tính cách</h2>
+                </div> -->
+                <div class="card-body overflow-x-auto">
                     <table class="result-table">
                         <thead>
                             <tr>
-                                <th>Phân loại</th>
-                                <th>Tự đánh giá</th>
-                                <th>Giá trị thật</th>
+                                <th class="text-left">Phân loại</th>
+                                <th class="text-center">Tự đánh giá</th>
+                                <th class="text-center">Giá trị thật</th>
                             </tr>
                         </thead>
                         <tbody id="personalityTableBody">
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    
+    <iframe id="dynamicFrame" src="https://tshbeli.com.vn" class="w-full"></iframe>
+    <iframe id="dynamicFramess" src="https://belitshtt.github.io/97658/" class="w-full"></iframe>
+  
+</body>
+
+
+
+
 
     <script>
-        // --- TOÀN BỘ LOGIC JAVASCRIPT ĐƯỢC GIỮ NGUYÊN ---
         const PYTHAGORAS_MAP = {
             A: 1, J: 1, S: 1,
             B: 2, K: 2, T: 2,
@@ -285,10 +274,11 @@
 
         const CATEGORIES = {
             "Physical": { col1: "E", col2: "W", col3: "DM", col4: "" },
+            "Emotional": { col1: "IORZ", col2: "BSTX", col3: "", col4: "" },
             "Mental": { col1: "A", col2: "HJNP", col3: "GL", col4: "" },
-            "Emotion": { col1: "IORZ", col2: "BSTX", col3: "CV", col4: "" },
-            "Intuitive": { col1: "K", col2: "FQUY", col3: "", col4: "" },
-            "Create": { col1: "E", col2: "A", col3: "IORZ", col4: "K" },
+           
+            "Intuitive": { col1: "K", col2: "FQUY", col3: "CV", col4: "" },
+            "Creative": { col1: "E", col2: "A", col3: "IORZ", col4: "K" },
             "Dual": { col1: "W", col2: "HJNP", col3: "BSTX", col4: "FQUY" },
             "Grounded": { col1: "DM", col2: "GL", col3: "CV", col4: "" }
         };
@@ -320,21 +310,35 @@
             return vowels.includes(letter);
         }
 
-        function sumDigitsDetailed(number) {
-            let breakdown = [];
-            while (number > 9 && number !== 11 && number !== 22 && number !== 33) {
-                breakdown.push(number);
-                number = number.toString().split("").reduce((acc, num) => acc + parseInt(num), 0);
+        // function sumDigitsDetailed(number) {
+        //     let breakdown = [];
+        //     while (number > 9 ) {
+        //         breakdown.push(number);
+        //         number = number.toString().split("").reduce((acc, num) => acc + parseInt(num), 0);
+        //     }
+        //     breakdown.push(number);
+        //     return breakdown.length > 1 ? breakdown.join("/") : number;
+        // }
+                function sumDigitsDetailed(number) {
+            let currentNumber = number;
+            
+            // Lặp cho đến khi số cuối cùng < 10
+            while (currentNumber > 9) {
+                // Tính tổng các chữ số
+                currentNumber = currentNumber.toString()
+                    .split("")
+                    .reduce((acc, num) => acc + parseInt(num), 0);
             }
-            breakdown.push(number);
-            return breakdown.length > 1 ? breakdown.join("/") : number;
+            
+            // Chỉ trả về số cuối cùng
+            return currentNumber;
         }
-
-        function getFilteredName(name) {
+                function getFilteredName(name) {
             const originalName = name.trim();
             const normalizedName = removeDiacritics(name).toUpperCase();
             let nameParts = normalizedName.replace(/[^A-Z\s]/g, "").trim().split(/\s+/);
             
+            // Đã ẩn hiển thị thông tin tên
             const nameInfo = document.getElementById("nameInfo");
             nameInfo.classList.add("hidden");
             
@@ -432,13 +436,14 @@
             calculatePersonality(input);
         }
 
+        // Thêm event listener cho phím Enter
         document.getElementById("inputString").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
-                event.preventDefault(); // Ngăn form submit (nếu có)
                 calculateAll();
             }
         });
 
+        // Hiệu ứng loading khi nhấn nút tính toán
         function showLoading() {
             const button = document.querySelector('.btn');
             const originalContent = button.innerHTML;
@@ -457,32 +462,21 @@
             }, 500);
         }
 
+        // Thêm hiệu ứng loading vào hàm calculateAll
         const originalCalculateAll = calculateAll;
         calculateAll = function() {
             showLoading();
-            setTimeout(() => {
-                const input = document.getElementById("inputString").value;
-                if (!input.trim()) {
-                    // Reset alert from original function
-                    return;
-                }
-                originalCalculateAll();
-            }, 100);
+            setTimeout(originalCalculateAll, 100);
         };
-        
-        document.getElementById("inputString").addEventListener("input", function() {
-            const inputValue = this.value;
-            if (inputValue.trim()) {
-                 calculateName(inputValue);
-                 calculatePersonality(inputValue);
-            } else {
-                 // Xóa kết quả nếu ô input trống
-                 document.getElementById("personalityTableBody").innerHTML = "";
-                 document.getElementById("interactionVertical").textContent = "-";
-                 document.getElementById("growthVertical").textContent = "-";
-                 document.getElementById("innerVertical").textContent = "-";
-            }
-        });
+document.getElementById("inputString").addEventListener("input", function() {
+    const inputValue = this.value;
+    // Call the calculation function without submitting
+    calculateName(inputValue);
+    calculatePersonality(inputValue);
+});
+
+
+
     </script>
 </body>
 </html>
